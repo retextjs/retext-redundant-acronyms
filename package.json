@@ -1,0 +1,67 @@
+{
+  "name": "retext-redundant-acronyms",
+  "version": "0.0.0",
+  "description": "Check for redundant acronyms (ATM machine)",
+  "license": "MIT",
+  "keywords": [
+    "redundant",
+    "acronym",
+    "syndrome",
+    "retext",
+    "plugin"
+  ],
+  "files": [
+    "schema.json",
+    "index.js"
+  ],
+  "repository": "https://github.com/wooorm/retext-redundant-acronyms",
+  "bugs": "https://github.com/wooorm/retext-redundant-acronyms/issues",
+  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+  ],
+  "dependencies": {
+    "match-casing": "^1.0.0",
+    "nlcst-search": "^1.0.0",
+    "nlcst-to-string": "^2.0.0",
+    "object-keys": "^1.0.9",
+    "quotation": "^1.0.1",
+    "unist-util-position": "^2.0.1"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.1",
+    "esmangle": "^1.0.1",
+    "nyc": "^8.0.0",
+    "remark-cli": "^2.0.0",
+    "remark-preset-wooorm": "^1.0.0",
+    "retext": "^4.0.0",
+    "tape": "^4.0.0",
+    "xo": "^0.16.0"
+  },
+  "scripts": {
+    "build-md": "remark . --quiet --frail",
+    "build-bundle": "browserify index.js --bare -s retextRedundantAcronyms > retext-redundant-acronyms.js",
+    "build-mangle": "esmangle retext-redundant-acronyms.js > retext-redundant-acronyms.min.js",
+    "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+    "lint": "xo",
+    "test-api": "node test.js",
+    "test-coverage": "nyc --reporter lcov tape test.js",
+    "test": "npm run build && npm run lint && npm run test-coverage"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 100,
+    "functions": 100,
+    "branches": 100
+  },
+  "xo": {
+    "space": true,
+    "ignores": [
+      "retext-redundant-acronyms.js"
+    ]
+  },
+  "remarkConfig": {
+    "output": true,
+    "presets": "wooorm"
+  }
+}
