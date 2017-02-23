@@ -29,6 +29,8 @@ function redundantAcronyms() {
       }, phrase.replace(/\s+/g, '-').toLowerCase());
 
       message.source = 'retext-redundant-acronyms';
+      message.actual = value;
+      message.expected = [replace.slice(1, -1)];
     }
   }
 }
