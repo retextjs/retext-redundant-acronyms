@@ -16,21 +16,35 @@ npm install retext-redundant-acronyms
 
 ## Usage
 
-```js
-var retext = require('retext');
-var redundantAcronyms = require('retext-redundant-acronyms');
-var report = require('vfile-reporter');
+Say we have the following file, `example.txt`:
 
-retext()
+```text
+Where can I find an ATM machine?
+```
+
+And our script, `example.js`, looks like this:
+
+```javascript
+var vfile = require('to-vfile');
+var report = require('vfile-reporter');
+var unified = require('unified');
+var english = require('retext-english');
+var stringify = require('retext-stringify');
+var redundantAcronyms = require('retext-redundant-acronyms');
+
+unified()
+  .use(english)
   .use(redundantAcronyms)
-  .process('Where can I find an ATM machine?', function (err, file) {
+  .use(stringify)
+  .process(vfile.readSync('example.txt'), function (err, file) {
     console.error(report(err || file));
   });
 ```
 
-Yields:
+Now, running `node example` yields:
 
-```txt
+```text
+example.txt
   1:21-1:32  warning  Replace `ATM machine` with `ATM`  atm-machine  retext-redundant-acronyms
 
 ⚠ 1 warning
