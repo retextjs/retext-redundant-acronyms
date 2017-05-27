@@ -3,7 +3,7 @@
 Check for redundant acronyms (for example, `ATM machine` > `ATM`) with
 [**retext**][retext].
 
-Fun fact, this is called [RAS syndrome][ras]
+Fun fact, this is called [`RAS syndrome`][ras]
 (`redundant acronym syndrome syndrome`).
 
 ## Installation
@@ -40,7 +40,7 @@ Yields:
 
 ### `retext().use(redundantAcronyms)`
 
-Check for redundant acronyms (for example, ATM machine).
+Check for redundant acronyms (for example, `ATM machine`).
 
 ## License
 
