@@ -42,6 +42,13 @@ Yields:
 
 Check for redundant acronyms (for example, `ATM machine`).
 
+## Related
+
+*   [`retext-indefinite-article`](https://github.com/wooorm/retext-indefinite-article)
+    — Check if indefinite articles are used correctly
+*   [`retext-repeated-words`](https://github.com/wooorm/retext-repeated-words)
+    — Check `for for` repeated words
+
 ## License
 
 [MIT][license] © [Titus Wormer][author]
