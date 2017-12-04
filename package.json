@@ -10,8 +10,8 @@
     "retext",
     "plugin"
   ],
-  "repository": "wooorm/retext-redundant-acronyms",
-  "bugs": "https://github.com/wooorm/retext-redundant-acronyms/issues",
+  "repository": "retextjs/retext-redundant-acronyms",
+  "bugs": "https://github.com/retextjs/retext-redundant-acronyms/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",

@@ -58,9 +58,9 @@ Check for redundant acronyms (for example, `ATM machine`).
 
 ## Related
 
-*   [`retext-indefinite-article`](https://github.com/wooorm/retext-indefinite-article)
+*   [`retext-indefinite-article`](https://github.com/retextjs/retext-indefinite-article)
     — Check if indefinite articles are used correctly
-*   [`retext-repeated-words`](https://github.com/wooorm/retext-repeated-words)
+*   [`retext-repeated-words`](https://github.com/retextjs/retext-repeated-words)
     — Check `for for` repeated words
 
 ## License
@@ -69,13 +69,13 @@ Check for redundant acronyms (for example, `ATM machine`).
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/wooorm/retext-redundant-acronyms.svg
+[travis-badge]: https://img.shields.io/travis/retextjs/retext-redundant-acronyms.svg
 
-[travis]: https://travis-ci.org/wooorm/retext-redundant-acronyms
+[travis]: https://travis-ci.org/retextjs/retext-redundant-acronyms
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/retext-redundant-acronyms.svg
+[codecov-badge]: https://img.shields.io/codecov/c/github/retextjs/retext-redundant-acronyms.svg
 
-[codecov]: https://codecov.io/github/wooorm/retext-redundant-acronyms
+[codecov]: https://codecov.io/github/retextjs/retext-redundant-acronyms
 
 [npm]: https://docs.npmjs.com/cli/install
 
@@ -83,6 +83,6 @@ Check for redundant acronyms (for example, `ATM machine`).
 
 [author]: http://wooorm.com
 
-[retext]: https://github.com/wooorm/retext
+[retext]: https://github.com/retextjs/retext
 
 [ras]: https://en.wikipedia.org/wiki/RAS_syndrome
