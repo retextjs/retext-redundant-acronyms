@@ -63,6 +63,13 @@ Check for redundant acronyms (for example, `ATM machine`).
 *   [`retext-repeated-words`](https://github.com/retextjs/retext-repeated-words)
     — Check `for for` repeated words
 
+## Contribute
+
+See [`contribute.md` in `retextjs/retext`][contribute] for ways to get started.
+
+This organisation has a [Code of Conduct][coc].  By interacting with this
+repository, organisation, or community you agree to abide by its terms.
+
 ## License
 
 [MIT][license] © [Titus Wormer][author]
@@ -86,3 +93,7 @@ Check for redundant acronyms (for example, `ATM machine`).
 [retext]: https://github.com/retextjs/retext
 
 [ras]: https://en.wikipedia.org/wiki/RAS_syndrome
+
+[contribute]: https://github.com/retextjs/retext/blob/master/contributing.md
+
+[coc]: https://github.com/retextjs/retext/blob/master/code-of-conduct.md
