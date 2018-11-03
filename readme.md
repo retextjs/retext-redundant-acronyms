@@ -1,4 +1,4 @@
-# retext-redundant-acronyms [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
+# retext-redundant-acronyms [![Build][build-badge]][build] [![Coverage][coverage-badge]][coverage] [![Downloads][downloads-badge]][downloads] [![Chat][chat-badge]][chat]
 
 Check for redundant acronyms (for example, `ATM machine` > `ATM`) with
 [**retext**][retext].
@@ -77,13 +77,21 @@ repository, organisation, or community you agree to abide by its terms.
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/retextjs/retext-redundant-acronyms.svg
+[build-badge]: https://img.shields.io/travis/retextjs/retext-redundant-acronyms.svg
 
-[travis]: https://travis-ci.org/retextjs/retext-redundant-acronyms
+[build]: https://travis-ci.org/retextjs/retext-redundant-acronyms
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/retextjs/retext-redundant-acronyms.svg
+[coverage-badge]: https://img.shields.io/codecov/c/github/retextjs/retext-redundant-acronyms.svg
 
-[codecov]: https://codecov.io/github/retextjs/retext-redundant-acronyms
+[coverage]: https://codecov.io/github/retextjs/retext-redundant-acronyms
+
+[downloads-badge]: https://img.shields.io/npm/dm/retext-redundant-acronyms.svg
+
+[downloads]: https://www.npmjs.com/package/retext-redundant-acronyms
+
+[chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
+
+[chat]: https://spectrum.chat/unified/retext
 
 [npm]: https://docs.npmjs.com/cli/install
 
