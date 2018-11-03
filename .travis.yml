@@ -4,21 +4,13 @@ node_js:
 - '8.0'
 after_script: bash <(curl -s https://codecov.io/bash)
 deploy:
-  - provider: npm
-    skip_cleanup: true
-    email: tituswormer@gmail.com
-    api_key:
-      secure: fF1IjMl7oTCVFRrxbVBA4t8ulyst8RPynKZGOP5EsmK7DubSzx0UWG+dEwHqnqzJJvNvqvMq5nXmWBRAVl7OoMgv2XC7pVYjek2Y5dg+ZDZn49ngyDFkOnf1eX8fB5wh5R4FxdNl3IPGx6URuBTJzU61juXhGB9Hs6PtkgEf0yCr1T2ZPyUBZHWln1HcZsE27Tw/9rgg+JYVucRZiaMO7Uqx+lTtTamNPX3s4jh4RIDXVkDYVkjv78G/Oa/jJtEysUQYybicNXTlmk6HqgkZb5WZyy7FqBrLF6TgdbzPiV7qlr1r3L+rITLzQV8L1VBgK1dYLbzOL1A4p2gW/B1DttKdckecJH9/03lNBcXJzv9u64w2kY0jscjscvGrqE3LhZQDQS4rLZ7//l+C3Cdy7D9CHPC0/36GIiL1nQvLpA6WluqpZIorV/45f9ByK0HxQzh74SkMocj2+rP5UQpynDQdk5po4rHhoDby1I1stnbm+SvCSyRzM2VIUy1atXEypdSdNjVU6TmRdrKREcdBX8315W+mJ2nM8qtSqoN5tn3Zd7kDlOJ6W6lmA9D+W03n+LFQm690d7+HOloByHoDhfCHPbnS+g3ThVJkGlSzrit36tPU/RWdtN45nXC18YlVpvSWu9WgsrHeUhO/pmKmUU4qKP1d/DtJHfAec5rEGUI=
-    on:
-      tags: true
-      node: '9.0'
-  - provider: releases
-    skip_cleanup: true
-    api_key:
-      secure: o7fFNDbgCOLjm2yoKMWMMFNV2pqaZED9osn4tXWasvmthpyK5Kn97X1Ay/cUt9SW/slx1x63+/yxrlvrOEoyYXqpDpqQKlRiOOJV335Wr6st6NnjGoG1ON78O4RbO23qKUhplpHkpjsL4oO/MHtLFGAn70gKDS/PMIH1mFhld7odVKliqnTHX1EFTCXTSfbPzCUtDO3iYZt7t0/J1ybb+jJW0gHLFqYLtLIaEMCpjyBw5owCBUpu7tluxsFN+jX1wrKOzVeNjeP2jctiro3Mduqlp+327P3J4O127wBmJqaLlmOiX62cTA7HhvQSQ2saLL7/YAa7gap1931HHjXgKJlLFZdbrPpZC3Q4IbG3UmhNLejAF+NoqohAVRGz//bDiTZ9b5v963nxSLPzCr21Rf11TK9wm5WIvtX3gKqv2W1Plh6RDbTFm14nMxRXQYR+XUFt4QHHdbtib0BaKb6wDrsnOIqKlPsZQOJJklnLYgd1WRr9YOVmD6Xq+mBUe0z1hEENHQxWFfI9RoGTHKzwMXgWkWAgD92j3R7Ve3u3FVxyKpmwEdMV6Usl7dacegzspivHzukHjg/tvZq4itAYqpdWCjkCaRuHgVvBMUytEJV49INNZCyGVJ6f+UAYHYkEgWCGVizNI8uiOjSyW+SIezDSns1qINhjenG08g7+1WA=
-    file:
-      - "retext-redundant-acronyms.js"
-      - "retext-redundant-acronyms.min.js"
-    on:
-      tags: true
-      node: '9.0'
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: o7fFNDbgCOLjm2yoKMWMMFNV2pqaZED9osn4tXWasvmthpyK5Kn97X1Ay/cUt9SW/slx1x63+/yxrlvrOEoyYXqpDpqQKlRiOOJV335Wr6st6NnjGoG1ON78O4RbO23qKUhplpHkpjsL4oO/MHtLFGAn70gKDS/PMIH1mFhld7odVKliqnTHX1EFTCXTSfbPzCUtDO3iYZt7t0/J1ybb+jJW0gHLFqYLtLIaEMCpjyBw5owCBUpu7tluxsFN+jX1wrKOzVeNjeP2jctiro3Mduqlp+327P3J4O127wBmJqaLlmOiX62cTA7HhvQSQ2saLL7/YAa7gap1931HHjXgKJlLFZdbrPpZC3Q4IbG3UmhNLejAF+NoqohAVRGz//bDiTZ9b5v963nxSLPzCr21Rf11TK9wm5WIvtX3gKqv2W1Plh6RDbTFm14nMxRXQYR+XUFt4QHHdbtib0BaKb6wDrsnOIqKlPsZQOJJklnLYgd1WRr9YOVmD6Xq+mBUe0z1hEENHQxWFfI9RoGTHKzwMXgWkWAgD92j3R7Ve3u3FVxyKpmwEdMV6Usl7dacegzspivHzukHjg/tvZq4itAYqpdWCjkCaRuHgVvBMUytEJV49INNZCyGVJ6f+UAYHYkEgWCGVizNI8uiOjSyW+SIezDSns1qINhjenG08g7+1WA=
+  file:
+    - "retext-redundant-acronyms.js"
+    - "retext-redundant-acronyms.min.js"
+  on:
+    tags: true
+    node: '9.0'
