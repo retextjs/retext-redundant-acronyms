@@ -25,20 +25,20 @@ Where can I find an ATM machine?
 And our script, `example.js`, looks like this:
 
 ```javascript
-var vfile = require('to-vfile');
-var report = require('vfile-reporter');
-var unified = require('unified');
-var english = require('retext-english');
-var stringify = require('retext-stringify');
-var redundantAcronyms = require('retext-redundant-acronyms');
+var vfile = require('to-vfile')
+var report = require('vfile-reporter')
+var unified = require('unified')
+var english = require('retext-english')
+var stringify = require('retext-stringify')
+var redundantAcronyms = require('retext-redundant-acronyms')
 
 unified()
   .use(english)
   .use(redundantAcronyms)
   .use(stringify)
-  .process(vfile.readSync('example.txt'), function (err, file) {
-    console.error(report(err || file));
-  });
+  .process(vfile.readSync('example.txt'), function(err, file) {
+    console.error(report(err || file))
+  })
 ```
 
 Now, running `node example` yields:
