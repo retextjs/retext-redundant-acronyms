@@ -25,20 +25,20 @@
     "match-casing": "^1.0.0",
     "nlcst-search": "^1.0.0",
     "nlcst-to-string": "^2.0.0",
-    "object-keys": "^1.0.9",
-    "quotation": "^1.0.1",
+    "object-keys": "^1.0.0",
+    "quotation": "^1.0.0",
     "unist-util-position": "^3.0.0"
   },
   "devDependencies": {
     "browserify": "^16.0.0",
-    "nyc": "^13.0.0",
-    "prettier": "^1.14.3",
+    "nyc": "^14.0.0",
+    "prettier": "^1.0.0",
     "remark-cli": "^6.0.0",
-    "remark-preset-wooorm": "^4.0.0",
-    "retext": "^5.0.0",
+    "remark-preset-wooorm": "^5.0.0",
+    "retext": "^6.0.0",
     "tape": "^4.0.0",
-    "tinyify": "^2.4.3",
-    "xo": "^0.23.0"
+    "tinyify": "^2.0.0",
+    "xo": "^0.24.0"
   },
   "scripts": {
     "format": "remark . -qfo && prettier --write \"**/*.js\" && xo --fix",
