@@ -26,7 +26,6 @@
     "match-casing": "^1.0.0",
     "nlcst-search": "^1.0.0",
     "nlcst-to-string": "^2.0.0",
-    "object-keys": "^1.0.0",
     "quotation": "^1.0.0",
     "unist-util-position": "^3.0.0"
   },
@@ -67,6 +66,9 @@
   "xo": {
     "prettier": true,
     "esnext": false,
+    "rules": {
+      "guard-for-in": "off"
+    },
     "ignores": [
       "retext-redundant-acronyms.js"
     ]

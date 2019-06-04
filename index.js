@@ -1,6 +1,5 @@
 'use strict'
 
-var keys = require('object-keys')
 var casing = require('match-casing')
 var search = require('nlcst-search')
 var nlcstToString = require('nlcst-to-string')
@@ -38,4 +37,15 @@ function redundantAcronyms() {
       message.expected = [replace]
     }
   }
+}
+
+function keys(object) {
+  var result = []
+  var key
+
+  for (key in object) {
+    result.push(key)
+  }
+
+  return result
 }
