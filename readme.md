@@ -1,30 +1,38 @@
-# retext-redundant-acronyms [![Build][build-badge]][build] [![Coverage][coverage-badge]][coverage] [![Downloads][downloads-badge]][downloads] [![Chat][chat-badge]][chat]
+# retext-redundant-acronyms
 
-Check for redundant acronyms (for example, `ATM machine` > `ATM`) with
-[**retext**][retext].
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][size-badge]][size]
+[![Sponsors][sponsors-badge]][collective]
+[![Backers][backers-badge]][collective]
+[![Chat][chat-badge]][chat]
 
-Fun fact, this is called [`RAS syndrome`][ras]
-(`redundant acronym syndrome syndrome`).
+[**retext**][retext] plugin to check for redundant acronyms (such as
+`ATM machine` to `ATM`).
 
-## Installation
+Fun fact, this is called [`RAS syndrome`][ras] (`redundant acronym syndrome
+syndrome`).
+
+## Install
 
 [npm][]:
 
-```bash
+```sh
 npm install retext-redundant-acronyms
 ```
 
-## Usage
+## Use
 
 Say we have the following file, `example.txt`:
 
-```text
+```txt
 Where can I find an ATM machine?
 ```
 
-And our script, `example.js`, looks like this:
+…and our script, `example.js`, looks like this:
 
-```javascript
+```js
 var vfile = require('to-vfile')
 var report = require('vfile-reporter')
 var unified = require('unified')
@@ -54,7 +62,7 @@ example.txt
 
 ### `retext().use(redundantAcronyms)`
 
-Check for redundant acronyms (for example, `ATM machine`).
+Check for redundant acronyms (such as `ATM machine`).
 
 ## Related
 
@@ -65,11 +73,13 @@ Check for redundant acronyms (for example, `ATM machine`).
 
 ## Contribute
 
-See [`contributing.md` in `retextjs/retext`][contribute] for ways to get
-started.
+See [`contributing.md`][contributing] in [`retextjs/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
 
-This organisation has a [Code of Conduct][coc].  By interacting with this
-repository, organisation, or community you agree to abide by its terms.
+This project has a [Code of Conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
 
 ## License
 
@@ -89,11 +99,29 @@ repository, organisation, or community you agree to abide by its terms.
 
 [downloads]: https://www.npmjs.com/package/retext-redundant-acronyms
 
+[size-badge]: https://img.shields.io/bundlephobia/minzip/retext-redundant-acronyms.svg
+
+[size]: https://bundlephobia.com/result?p=retext-redundant-acronyms
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[collective]: https://opencollective.com/unified
+
 [chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
 
 [chat]: https://spectrum.chat/unified/retext
 
 [npm]: https://docs.npmjs.com/cli/install
+
+[health]: https://github.com/retextjs/.github
+
+[contributing]: https://github.com/retextjs/.github/blob/master/contributing.md
+
+[support]: https://github.com/retextjs/.github/blob/master/support.md
+
+[coc]: https://github.com/retextjs/.github/blob/master/code-of-conduct.md
 
 [license]: license
 
@@ -102,7 +130,3 @@ repository, organisation, or community you agree to abide by its terms.
 [retext]: https://github.com/retextjs/retext
 
 [ras]: https://en.wikipedia.org/wiki/RAS_syndrome
-
-[contribute]: https://github.com/retextjs/retext/blob/master/contributing.md
-
-[coc]: https://github.com/retextjs/retext/blob/master/code-of-conduct.md
