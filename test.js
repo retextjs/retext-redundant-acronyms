@@ -9,10 +9,7 @@ test('simplify', function(t) {
 
   retext()
     .use(redundantAcronyms)
-    .process(['Where can I find an ATM machine?'].join('\n'), function(
-      err,
-      file
-    ) {
+    .process('Where can I find an ATM machine?', function(err, file) {
       t.ifError(err, 'should not fail')
 
       t.equal(
