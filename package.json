@@ -1,14 +1,15 @@
 {
   "name": "retext-redundant-acronyms",
   "version": "1.2.2",
-  "description": "Check for redundant acronyms (ATM machine)",
+  "description": "retext plugin to check for redundant acronyms (ATM machine)",
   "license": "MIT",
   "keywords": [
+    "unified",
+    "retext",
+    "plugin",
     "redundant",
     "acronym",
-    "syndrome",
-    "retext",
-    "plugin"
+    "syndrome"
   ],
   "repository": "retextjs/retext-redundant-acronyms",
   "bugs": "https://github.com/retextjs/retext-redundant-acronyms/issues",
