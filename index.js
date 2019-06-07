@@ -1,13 +1,18 @@
 'use strict'
 
-var casing = require('match-casing')
+var pluralize = require('pluralize')
 var search = require('nlcst-search')
+var normalize = require('nlcst-normalize')
 var toString = require('nlcst-to-string')
+var after = require('unist-util-find-after')
 var position = require('unist-util-position')
 var quote = require('quotation')
 var schema = require('./schema')
 
 module.exports = redundantAcronyms
+
+// Trans.
+pluralize.addSingularRule(/trans$/i, 'singular')
 
 var source = 'retext-redundant-acronyms'
 
@@ -19,22 +24,85 @@ function redundantAcronyms() {
   function transformer(tree, file) {
     search(tree, list, searcher)
 
-    function searcher(match, index, parent, phrase) {
-      var id = schema[phrase].replace(/\s+/g, '-').toLowerCase()
-      var actual = toString(match)
-      var expected = casing(schema[phrase], actual)
+    function searcher(match, start, parent, phrase) {
+      var expansions = schema[phrase]
+      var siblings = parent.children
+      var tail = siblings[start + match.length - 1]
+      var length = expansions.length
+      var index = -1
+      var nodes
+      var nextNode
+      var nextExpected
+      var nextActual
+      var expansion
+      var expansionIndex
+      var rest
+      var actual
+      var expected
+      var message
 
-      var message = file.message(
-        'Replace ' + quote(actual, '`') + ' with ' + quote(expected, '`'),
-        {
-          start: position.start(match[0]),
-          end: position.end(match[match.length - 1])
-        },
-        [source, id].join(':')
-      )
+      while (++index < length) {
+        expansion = expansions[index]
+        nextNode = after(parent, tail, 'WordNode')
 
-      message.actual = actual
-      message.expected = [expected]
+        // We can probably break because the other expansions probably aren’t
+        // going to match, but it could be that a following expansion has no
+        // next word.
+        if (!nextNode) {
+          continue
+        }
+
+        nextActual = pluralize.singular(normalize(nextNode))
+        expansionIndex = expansion.indexOf(nextActual, 1)
+
+        if (expansionIndex === -1) {
+          continue
+        }
+
+        nextExpected = nextActual
+        rest = expansion.slice(expansionIndex + 1)
+
+        while (rest.length !== 0) {
+          nextNode = after(parent, nextNode, 'WordNode')
+
+          if (!nextNode) {
+            break
+          }
+
+          nextExpected = rest.shift()
+          nextActual = pluralize.singular(normalize(nextNode))
+
+          if (nextExpected !== nextActual) {
+            break
+          }
+        }
+
+        if (rest.length === 0 && nextExpected === nextActual) {
+          nodes = siblings.slice(start, siblings.indexOf(nextNode) + 1)
+          actual = toString(nodes)
+          expected = toString(match)
+
+          if (pluralize.isPlural(toString(nextNode))) {
+            expected += 's'
+          }
+
+          message = file.message(
+            'Expected ' +
+              quote(expected, '`') +
+              ' instead of ' +
+              quote(actual, '`'),
+            {
+              start: position.start(nodes[0]),
+              end: position.end(nodes[nodes.length - 1])
+            },
+            [source, phrase.replace(/\s+/g, '-').toLowerCase()].join(':')
+          )
+
+          message.actual = actual
+          message.expected = [expected]
+          return
+        }
+      }
     }
   }
 }
