@@ -64,6 +64,27 @@ example.txt
 
 Check for redundant acronyms (such as `ATM machine`).
 
+### Messages
+
+Each message is emitted as a [`VFileMessage`][message] on `file`, with the
+following fields:
+
+###### `message.source`
+
+Name of this plugin (`'retext-redundant-acronyms'`).
+
+###### `message.ruleId`
+
+Lower case matched abbreviation (`string`, such as `'atm'`)
+
+###### `message.actual`
+
+Current not ok phrase (`string`, such as `'ATM machines'`).
+
+###### `message.expected`
+
+List of suggestions (`Array.<string>`, such as `['ATMs']`).
+
 ## Related
 
 *   [`retext-indefinite-article`](https://github.com/retextjs/retext-indefinite-article)
@@ -128,5 +149,7 @@ abide by its terms.
 [author]: https://wooorm.com
 
 [retext]: https://github.com/retextjs/retext
+
+[message]: https://github.com/vfile/vfile-message
 
 [ras]: https://en.wikipedia.org/wiki/RAS_syndrome
