@@ -2,12 +2,14 @@
 
 var casing = require('match-casing')
 var search = require('nlcst-search')
-var nlcstToString = require('nlcst-to-string')
+var toString = require('nlcst-to-string')
 var position = require('unist-util-position')
-var quotation = require('quotation')
+var quote = require('quotation')
 var schema = require('./schema')
 
 module.exports = redundantAcronyms
+
+var source = 'retext-redundant-acronyms'
 
 var list = keys(schema)
 
@@ -18,23 +20,21 @@ function redundantAcronyms() {
     search(tree, list, searcher)
 
     function searcher(match, index, parent, phrase) {
-      var value = nlcstToString(match)
-      var replace = casing(schema[phrase], value)
-      var message =
-        'Replace ' + quotation(value, '`') + ' with ' + quotation(replace, '`')
+      var id = schema[phrase].replace(/\s+/g, '-').toLowerCase()
+      var actual = toString(match)
+      var expected = casing(schema[phrase], actual)
 
-      message = file.message(
-        message,
+      var message = file.message(
+        'Replace ' + quote(actual, '`') + ' with ' + quote(expected, '`'),
         {
           start: position.start(match[0]),
           end: position.end(match[match.length - 1])
         },
-        phrase.replace(/\s+/g, '-').toLowerCase()
+        [source, id].join(':')
       )
 
-      message.source = 'retext-redundant-acronyms'
-      message.actual = value
-      message.expected = [replace]
+      message.actual = actual
+      message.expected = [expected]
     }
   }
 }
