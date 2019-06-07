@@ -53,7 +53,7 @@ Now, running `node example` yields:
 
 ```text
 example.txt
-  1:21-1:32  warning  Replace `ATM machine` with `ATM`  atm-machine  retext-redundant-acronyms
+  1:21-1:32  warning  Expected `ATM` instead of `ATM machine`  atm  retext-redundant-acronyms
 
 ⚠ 1 warning
 ```
