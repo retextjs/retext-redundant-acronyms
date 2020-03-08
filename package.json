@@ -30,7 +30,7 @@
   ],
   "dependencies": {
     "nlcst-normalize": "^2.0.0",
-    "nlcst-search": "^1.0.0",
+    "nlcst-search": "^2.0.0",
     "nlcst-to-string": "^2.0.0",
     "pluralize": "^8.0.0",
     "quotation": "^1.0.0",
