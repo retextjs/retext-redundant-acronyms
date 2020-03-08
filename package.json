@@ -6,10 +6,12 @@
   "keywords": [
     "unified",
     "retext",
+    "retext-plugin",
     "plugin",
     "redundant",
     "acronym",
-    "syndrome"
+    "syndrome",
+    "ras"
   ],
   "repository": "retextjs/retext-redundant-acronyms",
   "bugs": "https://github.com/retextjs/retext-redundant-acronyms/issues",
