@@ -34,7 +34,7 @@
     "nlcst-to-string": "^2.0.0",
     "pluralize": "^8.0.0",
     "quotation": "^1.0.0",
-    "unist-util-find-after": "^2.0.0",
+    "unist-util-find-after": "^3.0.0",
     "unist-util-position": "^3.0.0"
   },
   "devDependencies": {
