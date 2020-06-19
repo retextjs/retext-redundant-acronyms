@@ -10,14 +10,14 @@ var redundantAcronyms = require('.')
 
 var concat = [].concat
 
-test('simplify', function(t) {
+test('simplify', function (t) {
   t.plan(2)
 
   retext()
     .use(redundantAcronyms)
-    .process('Where can I find an ATM machine?', function(err, file) {
+    .process('Where can I find an ATM machine?', function (err, file) {
       t.deepEqual(
-        [err].concat(file.messages),
+        JSON.parse(JSON.stringify([err].concat(file.messages))),
         [
           null,
           {
@@ -64,7 +64,7 @@ test('simplify', function(t) {
         // Definition.
         'TWA (Trans World Airline) was a US airline acquired and then liquidated in 2001.'
       ].join('\n'),
-      function(err, file) {
+      function (err, file) {
         t.deepEqual(
           [err].concat(file.messages.map(String)),
           [
@@ -81,10 +81,10 @@ test('simplify', function(t) {
     )
 })
 
-test('schema', function(t) {
-  t.doesNotThrow(function() {
-    Object.keys(schema).forEach(function(abbr) {
-      concat.apply([], schema[abbr]).forEach(function(word) {
+test('schema', function (t) {
+  t.doesNotThrow(function () {
+    Object.keys(schema).forEach(function (abbr) {
+      concat.apply([], schema[abbr]).forEach(function (word) {
         assert.strictEqual(
           normalize(word),
           word,
@@ -94,11 +94,11 @@ test('schema', function(t) {
     })
   }, 'all words should be normalized')
 
-  t.doesNotThrow(function() {
+  t.doesNotThrow(function () {
     var ignore = ['trans']
 
-    Object.keys(schema).forEach(function(abbr) {
-      concat.apply([], schema[abbr]).forEach(function(word) {
+    Object.keys(schema).forEach(function (abbr) {
+      concat.apply([], schema[abbr]).forEach(function (word) {
         if (ignore.includes(word)) {
           return
         }
