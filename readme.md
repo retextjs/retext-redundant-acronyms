@@ -108,9 +108,9 @@ abide by its terms.
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/retextjs/retext-redundant-acronyms.svg
+[build-badge]: https://github.com/retextjs/retext-redundant-acronyms/workflows/main/badge.svg
 
-[build]: https://travis-ci.org/retextjs/retext-redundant-acronyms
+[build]: https://github.com/retextjs/retext-redundant-acronyms/actions
 
 [coverage-badge]: https://img.shields.io/codecov/c/github/retextjs/retext-redundant-acronyms.svg
 
