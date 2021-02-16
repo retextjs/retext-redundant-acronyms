@@ -15,9 +15,9 @@ test('simplify', function (t) {
 
   retext()
     .use(redundantAcronyms)
-    .process('Where can I find an ATM machine?', function (err, file) {
+    .process('Where can I find an ATM machine?', function (error, file) {
       t.deepEqual(
-        JSON.parse(JSON.stringify([err].concat(file.messages))),
+        JSON.parse(JSON.stringify([error].concat(file.messages))),
         [
           null,
           {
@@ -64,9 +64,9 @@ test('simplify', function (t) {
         // Definition.
         'TWA (Trans World Airline) was a US airline acquired and then liquidated in 2001.'
       ].join('\n'),
-      function (err, file) {
+      function (error, file) {
         t.deepEqual(
-          [err].concat(file.messages.map(String)),
+          [error].concat(file.messages.map(String)),
           [
             null,
             '3:5-3:32: Expected `HIV` instead of `HIV immuno deficiency virus`',
