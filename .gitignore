@@ -1,7 +1,6 @@
 .DS_Store
 *.log
 node_modules/
-.nyc_output/
 coverage/
 retext-redundant-acronyms.js
 retext-redundant-acronyms.min.js
