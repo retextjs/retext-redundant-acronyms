@@ -1,5 +1,2 @@
 coverage/
-retext-redundant-acronyms.js
-retext-redundant-acronyms.min.js
-*.json
 *.md
