@@ -1,20 +1,18 @@
-'use strict'
+import assert from 'assert'
+import test from 'tape'
+import retext from 'retext'
+import normalize from 'nlcst-normalize'
+import pluralize from 'pluralize'
+import {schema} from './schema.js'
+import retextRedundantAcronyms from './index.js'
 
-var assert = require('assert')
-var test = require('tape')
-var retext = require('retext')
-var normalize = require('nlcst-normalize')
-var pluralize = require('pluralize')
-var schema = require('./schema')
-var redundantAcronyms = require('.')
+var own = {}.hasOwnProperty
 
-var concat = [].concat
-
-test('simplify', function (t) {
+test('retext-redundant-acronyms', function (t) {
   t.plan(2)
 
   retext()
-    .use(redundantAcronyms)
+    .use(retextRedundantAcronyms)
     .process('Where can I find an ATM machine?', function (error, file) {
       t.deepEqual(
         JSON.parse(JSON.stringify([error].concat(file.messages))),
@@ -42,7 +40,7 @@ test('simplify', function (t) {
     })
 
   retext()
-    .use(redundantAcronyms)
+    .use(retextRedundantAcronyms)
     .process(
       [
         // Abbreviation in sentence.
@@ -83,32 +81,46 @@ test('simplify', function (t) {
 
 test('schema', function (t) {
   t.doesNotThrow(function () {
-    Object.keys(schema).forEach(function (abbr) {
-      concat.apply([], schema[abbr]).forEach(function (word) {
-        assert.strictEqual(
-          normalize(word),
-          word,
-          '`' + word + '` should be normal'
-        )
-      })
-    })
+    let key
+
+    for (key in schema) {
+      if (own.call(schema, key)) {
+        const list = schema[key].flat()
+
+        let index = -1
+        while (++index < list.length) {
+          const word = list[index]
+          assert.strictEqual(
+            normalize(word),
+            word,
+            '`' + word + '` should be normal'
+          )
+        }
+      }
+    }
   }, 'all words should be normalized')
 
   t.doesNotThrow(function () {
     var ignore = ['trans']
+    let key
 
-    Object.keys(schema).forEach(function (abbr) {
-      concat.apply([], schema[abbr]).forEach(function (word) {
-        if (ignore.includes(word)) {
-          return
+    for (key in schema) {
+      if (own.call(schema, key)) {
+        const list = schema[key].flat()
+
+        let index = -1
+        while (++index < list.length) {
+          const word = list[index]
+
+          if (!ignore.includes(word)) {
+            assert.ok(
+              pluralize.isSingular(word),
+              '`' + word + '` should be singular'
+            )
+          }
         }
-
-        assert.ok(
-          pluralize.isSingular(word),
-          '`' + word + '` should be singular'
-        )
-      })
-    })
+      }
+    }
   }, 'all words should be singular')
 
   t.end()

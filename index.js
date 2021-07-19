@@ -1,15 +1,11 @@
-'use strict'
-
-var pluralize = require('pluralize')
-var search = require('nlcst-search')
-var normalize = require('nlcst-normalize')
-var toString = require('nlcst-to-string')
-var after = require('unist-util-find-after')
-var position = require('unist-util-position')
-var quote = require('quotation')
-var schema = require('./schema')
-
-module.exports = redundantAcronyms
+import pluralize from 'pluralize'
+import search from 'nlcst-search'
+import normalize from 'nlcst-normalize'
+import toString from 'nlcst-to-string'
+import after from 'unist-util-find-after'
+import position from 'unist-util-position'
+import quote from 'quotation'
+import {schema} from './schema.js'
 
 // Trans.
 pluralize.addSingularRule(/trans$/i, 'singular')
@@ -18,7 +14,7 @@ var source = 'retext-redundant-acronyms'
 
 var list = keys(schema)
 
-function redundantAcronyms() {
+export default function retextRedundantAcronyms() {
   return transformer
 
   function transformer(tree, file) {
