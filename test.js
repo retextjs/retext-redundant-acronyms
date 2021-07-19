@@ -6,18 +6,18 @@ import pluralize from 'pluralize'
 import {schema} from './schema.js'
 import retextRedundantAcronyms from './index.js'
 
-var own = {}.hasOwnProperty
+const own = {}.hasOwnProperty
 
-test('retext-redundant-acronyms', function (t) {
+test('retext-redundant-acronyms', (t) => {
   t.plan(2)
 
   retext()
     .use(retextRedundantAcronyms)
-    .process('Where can I find an ATM machine?', function (error, file) {
+    .process('Where can I find an ATM machine?')
+    .then((file) => {
       t.deepEqual(
-        JSON.parse(JSON.stringify([error].concat(file.messages))),
+        JSON.parse(JSON.stringify(file.messages)),
         [
-          null,
           {
             name: '1:21-1:32',
             message: 'Expected `ATM` instead of `ATM machine`',
@@ -37,7 +37,7 @@ test('retext-redundant-acronyms', function (t) {
         ],
         'should warn about redundant acronyms'
       )
-    })
+    }, t.ifErr)
 
   retext()
     .use(retextRedundantAcronyms)
@@ -61,26 +61,25 @@ test('retext-redundant-acronyms', function (t) {
         'Are there ATM machines nearby?',
         // Definition.
         'TWA (Trans World Airline) was a US airline acquired and then liquidated in 2001.'
-      ].join('\n'),
-      function (error, file) {
-        t.deepEqual(
-          [error].concat(file.messages.map(String)),
-          [
-            null,
-            '3:5-3:32: Expected `HIV` instead of `HIV immuno deficiency virus`',
-            '4:5-4:32: Expected `HIV` instead of `HIV immuno-deficiency virus`',
-            '5:1-5:16: Expected `GRE` instead of `GRE examination`',
-            '5:21-5:29: Expected `GRE` instead of `GRE exam`',
-            '9:11-9:23: Expected `ATMs` instead of `ATM machines`'
-          ],
-          'should warn about redundant acronyms'
-        )
-      }
+      ].join('\n')
     )
+    .then((file) => {
+      t.deepEqual(
+        file.messages.map((d) => String(d)),
+        [
+          '3:5-3:32: Expected `HIV` instead of `HIV immuno deficiency virus`',
+          '4:5-4:32: Expected `HIV` instead of `HIV immuno-deficiency virus`',
+          '5:1-5:16: Expected `GRE` instead of `GRE examination`',
+          '5:21-5:29: Expected `GRE` instead of `GRE exam`',
+          '9:11-9:23: Expected `ATMs` instead of `ATM machines`'
+        ],
+        'should warn about redundant acronyms'
+      )
+    }, t.ifErr)
 })
 
-test('schema', function (t) {
-  t.doesNotThrow(function () {
+test('schema', (t) => {
+  t.doesNotThrow(() => {
     let key
 
     for (key in schema) {
@@ -100,8 +99,8 @@ test('schema', function (t) {
     }
   }, 'all words should be normalized')
 
-  t.doesNotThrow(function () {
-    var ignore = ['trans']
+  t.doesNotThrow(() => {
+    const ignore = new Set(['trans'])
     let key
 
     for (key in schema) {
@@ -112,7 +111,7 @@ test('schema', function (t) {
         while (++index < list.length) {
           const word = list[index]
 
-          if (!ignore.includes(word)) {
+          if (!ignore.has(word)) {
             assert.ok(
               pluralize.isSingular(word),
               '`' + word + '` should be singular'
