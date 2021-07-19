@@ -32,13 +32,13 @@
     "schema.js"
   ],
   "dependencies": {
-    "nlcst-normalize": "^2.0.0",
-    "nlcst-search": "^2.0.0",
-    "nlcst-to-string": "^2.0.0",
+    "nlcst-normalize": "^3.0.0",
+    "nlcst-search": "^3.0.0",
+    "nlcst-to-string": "^3.0.0",
     "pluralize": "^8.0.0",
-    "quotation": "^1.0.0",
-    "unist-util-find-after": "^3.0.0",
-    "unist-util-position": "^3.0.0"
+    "quotation": "^2.0.0",
+    "unist-util-find-after": "^4.0.0",
+    "unist-util-position": "^4.0.0"
   },
   "devDependencies": {
     "c8": "^7.0.0",

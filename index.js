@@ -1,10 +1,10 @@
+import {normalize} from 'nlcst-normalize'
+import {search} from 'nlcst-search'
+import {toString} from 'nlcst-to-string'
 import pluralize from 'pluralize'
-import search from 'nlcst-search'
-import normalize from 'nlcst-normalize'
-import toString from 'nlcst-to-string'
-import after from 'unist-util-find-after'
-import position from 'unist-util-position'
-import quote from 'quotation'
+import {quotation} from 'quotation'
+import {findAfter} from 'unist-util-find-after'
+import {pointStart, pointEnd} from 'unist-util-position'
 import {schema} from './schema.js'
 
 // Trans.
@@ -39,7 +39,7 @@ export default function retextRedundantAcronyms() {
 
       while (++index < length) {
         expansion = expansions[index]
-        nextNode = after(parent, tail, 'WordNode')
+        nextNode = findAfter(parent, tail, 'WordNode')
 
         // We can probably break because the other expansions probably aren’t
         // going to match, but it could be that a following expansion has no
@@ -59,7 +59,7 @@ export default function retextRedundantAcronyms() {
         rest = expansion.slice(expansionIndex + 1)
 
         while (rest.length !== 0) {
-          nextNode = after(parent, nextNode, 'WordNode')
+          nextNode = findAfter(parent, nextNode, 'WordNode')
 
           if (!nextNode) {
             break
@@ -84,12 +84,12 @@ export default function retextRedundantAcronyms() {
 
           message = file.message(
             'Expected ' +
-              quote(expected, '`') +
+              quotation(expected, '`') +
               ' instead of ' +
-              quote(actual, '`'),
+              quotation(actual, '`'),
             {
-              start: position.start(nodes[0]),
-              end: position.end(nodes[nodes.length - 1])
+              start: pointStart(nodes[0]),
+              end: pointEnd(nodes[nodes.length - 1])
             },
             [source, phrase.replace(/\s+/g, '-').toLowerCase()].join(':')
           )
