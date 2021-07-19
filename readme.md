@@ -16,6 +16,9 @@ syndrome`).
 
 ## Install
 
+This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
+Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
+
 [npm][]:
 
 ```sh
@@ -33,19 +36,22 @@ Where can I find an ATM machine?
 …and our script, `example.js`, looks like this:
 
 ```js
-var vfile = require('to-vfile')
-var report = require('vfile-reporter')
-var unified = require('unified')
-var english = require('retext-english')
-var stringify = require('retext-stringify')
-var redundantAcronyms = require('retext-redundant-acronyms')
+import {readSync} from 'to-vfile'
+import {reporter} from 'vfile-reporter'
+import {unified} from 'unified'
+import retextEnglish from 'retext-english'
+import retextRedundantAcronyms from 'retext-redundant-acronyms'
+import retextStringify from 'retext-stringify'
+
+const file = readSync('example.txt')
 
 unified()
-  .use(english)
-  .use(redundantAcronyms)
-  .use(stringify)
-  .process(vfile.readSync('example.txt'), function(err, file) {
-    console.error(report(err || file))
+  .use(retextEnglish)
+  .use(retextRedundantAcronyms)
+  .use(retextStringify)
+  .process(file)
+  .then((file) => {
+    console.error(reporter(file))
   })
 ```
 
@@ -60,7 +66,10 @@ example.txt
 
 ## API
 
-### `retext().use(redundantAcronyms)`
+This package exports no identifiers.
+The default export is `retextRedundantAcronyms`.
+
+### `unified().use(retextRedundantAcronyms)`
 
 Check for redundant acronyms (such as `ATM machine`).
 
