@@ -1,6 +1,6 @@
 import assert from 'assert'
 import test from 'tape'
-import retext from 'retext'
+import {retext} from 'retext'
 import {normalize} from 'nlcst-normalize'
 import pluralize from 'pluralize'
 import {schema} from './schema.js'
@@ -19,17 +19,17 @@ test('retext-redundant-acronyms', function (t) {
         [
           null,
           {
-            message: 'Expected `ATM` instead of `ATM machine`',
             name: '1:21-1:32',
+            message: 'Expected `ATM` instead of `ATM machine`',
             reason: 'Expected `ATM` instead of `ATM machine`',
             line: 1,
             column: 21,
-            location: {
+            source: 'retext-redundant-acronyms',
+            ruleId: 'atm',
+            position: {
               start: {line: 1, column: 21, offset: 20},
               end: {line: 1, column: 32, offset: 31}
             },
-            source: 'retext-redundant-acronyms',
-            ruleId: 'atm',
             fatal: false,
             actual: 'ATM machine',
             expected: ['ATM']
