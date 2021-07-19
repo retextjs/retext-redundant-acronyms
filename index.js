@@ -14,6 +14,11 @@ const source = 'retext-redundant-acronyms'
 
 const list = Object.keys(schema)
 
+/**
+ * Plugin to check for redundant acronyms (such as `ATM machine` to `ATM`).
+ *
+ * @type {import('unified').Plugin<[]>}
+ */
 export default function retextRedundantAcronyms() {
   return (tree, file) => {
     search(tree, list, (match, start, parent, phrase) => {
@@ -50,6 +55,8 @@ export default function retextRedundantAcronyms() {
             break
           }
 
+          // @ts-expect-error: TS doesn’t know there’s always one item in the
+          // list.
           nextExpected = rest.shift()
           nextActual = pluralize.singular(normalize(nextNode))
 

@@ -80,6 +80,7 @@ test('retext-redundant-acronyms', (t) => {
 
 test('schema', (t) => {
   t.doesNotThrow(() => {
+    /** @type {string} */
     let key
 
     for (key in schema) {
@@ -101,6 +102,7 @@ test('schema', (t) => {
 
   t.doesNotThrow(() => {
     const ignore = new Set(['trans'])
+    /** @type {string} */
     let key
 
     for (key in schema) {
