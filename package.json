@@ -35,6 +35,7 @@
     "schema.js"
   ],
   "dependencies": {
+    "@types/nlcst": "^1.0.0",
     "@types/pluralize": "^0.0.29",
     "nlcst-normalize": "^3.0.0",
     "nlcst-search": "^3.0.0",

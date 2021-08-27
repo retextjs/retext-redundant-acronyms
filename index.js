@@ -1,3 +1,9 @@
+/**
+ * @typedef {import('nlcst').Root} Root
+ * @typedef {import('nlcst').Sentence} Sentence
+ * @typedef {import('nlcst').Word} Word
+ */
+
 import {normalize} from 'nlcst-normalize'
 import {search} from 'nlcst-search'
 import {toString} from 'nlcst-to-string'
@@ -17,11 +23,12 @@ const list = Object.keys(schema)
 /**
  * Plugin to check for redundant acronyms (such as `ATM machine` to `ATM`).
  *
- * @type {import('unified').Plugin<[]>}
+ * @type {import('unified').Plugin<[], Root>}
  */
 export default function retextRedundantAcronyms() {
   return (tree, file) => {
-    search(tree, list, (match, start, parent, phrase) => {
+    search(tree, list, (match, start, parent_, phrase) => {
+      const parent = /** @type {Sentence} */ (parent_)
       const expansions = schema[phrase]
       const siblings = parent.children
       const tail = siblings[start + match.length - 1]
@@ -29,7 +36,7 @@ export default function retextRedundantAcronyms() {
 
       while (++index < expansions.length) {
         const expansion = expansions[index]
-        let nextNode = findAfter(parent, tail, 'WordNode')
+        let nextNode = /** @type {Word} */ (findAfter(parent, tail, 'WordNode'))
 
         // We can probably break because the other expansions probably aren’t
         // going to match, but it could be that a following expansion has no
@@ -49,6 +56,7 @@ export default function retextRedundantAcronyms() {
         const rest = expansion.slice(expansionIndex + 1)
 
         while (rest.length > 0) {
+          // @ts-expect-error: to do: impove `find-after` types.
           nextNode = findAfter(parent, nextNode, 'WordNode')
 
           if (!nextNode) {
