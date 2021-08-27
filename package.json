@@ -1,6 +1,6 @@
 {
   "name": "retext-redundant-acronyms",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "retext plugin to check for redundant acronyms (ATM machine)",
   "license": "MIT",
   "keywords": [
