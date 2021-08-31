@@ -60,7 +60,8 @@ test('retext-redundant-acronyms', (t) => {
         // Plurals.
         'Are there ATM machines nearby?',
         // Definition.
-        'TWA (Trans World Airline) was a US airline acquired and then liquidated in 2001.'
+        'TWA (Trans World Airline) was a US airline acquired and then liquidated in 2001.',
+        'Whenever I read "CSS stylesheets" my brain automatically translates it…'
       ].join('\n')
     )
     .then((file) => {
@@ -71,7 +72,8 @@ test('retext-redundant-acronyms', (t) => {
           '4:5-4:32: Expected `HIV` instead of `HIV immuno-deficiency virus`',
           '5:1-5:16: Expected `GRE` instead of `GRE examination`',
           '5:21-5:29: Expected `GRE` instead of `GRE exam`',
-          '9:11-9:23: Expected `ATMs` instead of `ATM machines`'
+          '9:11-9:23: Expected `ATMs` instead of `ATM machines`',
+          '11:18-11:33: Expected `CSSs` instead of `CSS stylesheets`'
         ],
         'should warn about redundant acronyms'
       )

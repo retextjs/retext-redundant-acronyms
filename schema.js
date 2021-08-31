@@ -25,6 +25,10 @@ export const schema = {
   CD: [['compact', 'disc']],
   CGA: [['color', 'graphic', 'adapter']],
   CNN: [['cable', 'news', 'network']],
+  CSS: [
+    ['cascading', 'style', 'sheet'],
+    ['cascading', 'stylesheet']
+  ],
   COBOL: [['common', 'businessoriented', 'language']],
   CPI: [['consumer', 'price', 'index']],
   CPU: [['central', 'processing', 'unit']],
