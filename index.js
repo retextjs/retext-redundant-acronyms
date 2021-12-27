@@ -17,6 +17,7 @@ import {schema} from './schema.js'
 pluralize.addSingularRule(/trans$/i, 'singular')
 
 const source = 'retext-redundant-acronyms'
+const url = 'https://github.com/retextjs/retext-redundant-acronyms#readme'
 
 const list = Object.keys(schema)
 
@@ -94,7 +95,7 @@ export default function retextRedundantAcronyms() {
               },
               [source, phrase.replace(/\s+/g, '-').toLowerCase()].join(':')
             ),
-            {actual, expected: [expected]}
+            {actual, expected: [expected], url}
           )
 
           return

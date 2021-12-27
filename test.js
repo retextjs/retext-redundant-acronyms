@@ -32,7 +32,8 @@ test('retext-redundant-acronyms', (t) => {
             },
             fatal: false,
             actual: 'ATM machine',
-            expected: ['ATM']
+            expected: ['ATM'],
+            url: 'https://github.com/retextjs/retext-redundant-acronyms#readme'
           }
         ],
         'should warn about redundant acronyms'
