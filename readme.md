@@ -31,7 +31,7 @@ to `ATM`).
 This package is a [unified][] ([retext][]) plugin to check for redundant
 acronyms (such as `ATM machine` to `ATM`).
 
-> 🙃 **Fun fact**: this is called [`RAS syndrome`][ras] (`redundant acronym
+> 🙂 **Fun fact**: this is called [`RAS syndrome`][ras] (`redundant acronym
 > syndrome syndrome`).
 
 ## When should I use this?
@@ -80,7 +80,7 @@ import retextEnglish from 'retext-english'
 import retextRedundantAcronyms from 'retext-redundant-acronyms'
 import retextStringify from 'retext-stringify'
 
-const file = unified()
+const file = await unified()
   .use(retextEnglish)
   .use(retextRedundantAcronyms)
   .use(retextStringify)
