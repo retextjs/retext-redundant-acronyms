@@ -67,7 +67,7 @@ test('retext-redundant-acronyms', (t) => {
     )
     .then((file) => {
       t.deepEqual(
-        file.messages.map((d) => String(d)),
+        file.messages.map(String),
         [
           '3:5-3:32: Expected `HIV` instead of `HIV immuno deficiency virus`',
           '4:5-4:32: Expected `HIV` instead of `HIV immuno-deficiency virus`',
