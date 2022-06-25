@@ -92,7 +92,7 @@ Current not ok phrase (`string`, such as `'ATM machines'`).
 
 ###### `message.expected`
 
-List of suggestions (`Array.<string>`, such as `['ATMs']`).
+List of suggestions (`Array<string>`, such as `['ATMs']`).
 
 ## Related
 

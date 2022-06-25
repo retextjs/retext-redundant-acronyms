@@ -1,4 +1,4 @@
-/** @type {Record<string, string[][]>} */
+/** @type {Record<string, Array<Array<string>>>} */
 export const schema = {
   ABM: [['antiballistic', 'missile']],
   ABS: [['antilock', 'braking', 'system']],
