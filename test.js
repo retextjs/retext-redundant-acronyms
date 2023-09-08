@@ -19,18 +19,18 @@ test('retext-redundant-acronyms', (t) => {
         JSON.parse(JSON.stringify(file.messages)),
         [
           {
-            name: '1:21-1:32',
-            message: 'Expected `ATM` instead of `ATM machine`',
-            reason: 'Expected `ATM` instead of `ATM machine`',
-            line: 1,
             column: 21,
-            source: 'retext-redundant-acronyms',
-            ruleId: 'atm',
-            position: {
+            fatal: false,
+            message: 'Expected `ATM` instead of `ATM machine`',
+            line: 1,
+            name: '1:21-1:32',
+            place: {
               start: {line: 1, column: 21, offset: 20},
               end: {line: 1, column: 32, offset: 31}
             },
-            fatal: false,
+            reason: 'Expected `ATM` instead of `ATM machine`',
+            ruleId: 'atm',
+            source: 'retext-redundant-acronyms',
             actual: 'ATM machine',
             expected: ['ATM'],
             url: 'https://github.com/retextjs/retext-redundant-acronyms#readme'

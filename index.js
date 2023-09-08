@@ -28,11 +28,11 @@ const list = Object.keys(schema)
  */
 export default function retextRedundantAcronyms() {
   return (tree, file) => {
-    search(tree, list, (match, start, parent_, phrase) => {
+    search(tree, list, (match, from, parent_, phrase) => {
       const parent = /** @type {Sentence} */ (parent_)
       const expansions = schema[phrase]
       const siblings = parent.children
-      const tail = siblings[start + match.length - 1]
+      const tail = siblings[from + match.length - 1]
       let index = -1
 
       while (++index < expansions.length) {
@@ -75,8 +75,10 @@ export default function retextRedundantAcronyms() {
         }
 
         if (rest.length === 0 && nextExpected === nextActual) {
-          const nodes = siblings.slice(start, siblings.indexOf(nextNode) + 1)
+          const nodes = siblings.slice(from, siblings.indexOf(nextNode) + 1)
           const actual = toString(nodes)
+          const start = pointStart(nodes[0])
+          const end = pointEnd(nodes[nodes.length - 1])
           let expected = toString(match)
 
           if (pluralize.isPlural(toString(nextNode))) {
@@ -90,10 +92,11 @@ export default function retextRedundantAcronyms() {
                 ' instead of ' +
                 quotation(actual, '`'),
               {
-                start: pointStart(nodes[0]),
-                end: pointEnd(nodes[nodes.length - 1])
-              },
-              [source, phrase.replace(/\s+/g, '-').toLowerCase()].join(':')
+                /* c8 ignore next -- verbose to test */
+                place: start && end ? {start, end} : undefined,
+                ruleId: phrase.replace(/\s+/g, '-').toLowerCase(),
+                source
+              }
             ),
             {actual, expected: [expected], url}
           )
