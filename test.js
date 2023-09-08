@@ -3,7 +3,7 @@ import test from 'tape'
 import {retext} from 'retext'
 import {normalize} from 'nlcst-normalize'
 import pluralize from 'pluralize'
-import {schema} from './schema.js'
+import {schema} from './lib/schema.js'
 import retextRedundantAcronyms from './index.js'
 
 const own = {}.hasOwnProperty
