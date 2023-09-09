@@ -1,16 +1,17 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import {retext} from 'retext'
 import {normalize} from 'nlcst-normalize'
 import pluralize from 'pluralize'
+import {retext} from 'retext'
+import retextRedundantAcronyms from 'retext-redundant-acronyms'
 import {schema} from './lib/schema.js'
-import retextRedundantAcronyms from './index.js'
 
 test('retextRedundantAcronyms', async function (t) {
   await t.test('should expose the public api', async function () {
-    assert.deepEqual(Object.keys(await import('./index.js')).sort(), [
-      'default'
-    ])
+    assert.deepEqual(
+      Object.keys(await import('retext-redundant-acronyms')).sort(),
+      ['default']
+    )
   })
 
   await t.test('should emit a message w/ metadata', async function () {
