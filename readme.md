@@ -51,14 +51,14 @@ npm install retext-redundant-acronyms
 In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import retextRedundantAcronyms from 'https://esm.sh/retext-redundant-acronyms@4'
+import retextRedundantAcronyms from 'https://esm.sh/retext-redundant-acronyms@5'
 ```
 
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import retextRedundantAcronyms from 'https://esm.sh/retext-redundant-acronyms@4?bundle'
+  import retextRedundantAcronyms from 'https://esm.sh/retext-redundant-acronyms@5?bundle'
 </script>
 ```
 
