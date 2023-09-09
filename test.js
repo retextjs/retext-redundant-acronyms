@@ -18,29 +18,25 @@ test('retextRedundantAcronyms', async function (t) {
       .use(retextRedundantAcronyms)
       .process('Where can I find an ATM machine?')
 
-    assert.deepEqual(
-      JSON.parse(JSON.stringify(file.messages)),
-      [
-        {
-          column: 21,
-          fatal: false,
-          message: 'Expected `ATM` instead of `ATM machine`',
-          line: 1,
-          name: '1:21-1:32',
-          place: {
-            start: {line: 1, column: 21, offset: 20},
-            end: {line: 1, column: 32, offset: 31}
-          },
-          reason: 'Expected `ATM` instead of `ATM machine`',
-          ruleId: 'atm',
-          source: 'retext-redundant-acronyms',
-          actual: 'ATM machine',
-          expected: ['ATM'],
-          url: 'https://github.com/retextjs/retext-redundant-acronyms#readme'
-        }
-      ],
-      'should warn about redundant acronyms'
-    )
+    assert.deepEqual(JSON.parse(JSON.stringify(file.messages)), [
+      {
+        column: 21,
+        fatal: false,
+        message: 'Unexpected redundant `ATM machine`, expected `ATM`',
+        line: 1,
+        name: '1:21-1:32',
+        place: {
+          start: {line: 1, column: 21, offset: 20},
+          end: {line: 1, column: 32, offset: 31}
+        },
+        reason: 'Unexpected redundant `ATM machine`, expected `ATM`',
+        ruleId: 'atm',
+        source: 'retext-redundant-acronyms',
+        actual: 'ATM machine',
+        expected: ['ATM'],
+        url: 'https://github.com/retextjs/retext-redundant-acronyms#readme'
+      }
+    ])
   })
 
   await t.test('should emit messages', async function () {
@@ -69,12 +65,12 @@ test('retextRedundantAcronyms', async function (t) {
     )
 
     assert.deepEqual(file.messages.map(String), [
-      '3:5-3:32: Expected `HIV` instead of `HIV immuno deficiency virus`',
-      '4:5-4:32: Expected `HIV` instead of `HIV immuno-deficiency virus`',
-      '5:1-5:16: Expected `GRE` instead of `GRE examination`',
-      '5:21-5:29: Expected `GRE` instead of `GRE exam`',
-      '9:11-9:23: Expected `ATMs` instead of `ATM machines`',
-      '11:18-11:33: Expected `CSSs` instead of `CSS stylesheets`'
+      '3:5-3:32: Unexpected redundant `HIV immuno deficiency virus`, expected `HIV`',
+      '4:5-4:32: Unexpected redundant `HIV immuno-deficiency virus`, expected `HIV`',
+      '5:1-5:16: Unexpected redundant `GRE examination`, expected `GRE`',
+      '5:21-5:29: Unexpected redundant `GRE exam`, expected `GRE`',
+      '9:11-9:23: Unexpected redundant `ATM machines`, expected `ATMs`',
+      '11:18-11:33: Unexpected redundant `CSS stylesheets`, expected `CSSs`'
     ])
   })
 })
