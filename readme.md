@@ -31,7 +31,7 @@ to `ATM`).
 This package is a [unified][] ([retext][]) plugin to check for redundant
 acronyms (such as `ATM machine` to `ATM`).
 
-> 🙂 **Fun fact**: this is called [`RAS syndrome`][ras] (`redundant acronym
+> 🙂 **Fun fact**: this is called [`RAS syndrome`][wiki-ras] (`redundant acronym
 > syndrome syndrome`).
 
 ## When should I use this?
@@ -42,7 +42,7 @@ grammar mistakes, and have authors that can fix that content.
 ## Install
 
 This package is [ESM only][esm].
-In Node.js (version 12.20+, 14.14+, 16.0+, or 18.0+), install with [npm][]:
+In Node.js (version 16+), install with [npm][]:
 
 ```sh
 npm install retext-redundant-acronyms
@@ -70,15 +70,15 @@ Say our document `example.txt` contains:
 Where can I find an ATM machine?
 ```
 
-…and our module `example.js` looks as follows:
+…and our module `example.js` contains:
 
 ```js
-import {read} from 'to-vfile'
-import {reporter} from 'vfile-reporter'
-import {unified} from 'unified'
 import retextEnglish from 'retext-english'
 import retextRedundantAcronyms from 'retext-redundant-acronyms'
 import retextStringify from 'retext-stringify'
+import {read} from 'to-vfile'
+import {unified} from 'unified'
+import {reporter} from 'vfile-reporter'
 
 const file = await unified()
   .use(retextEnglish)
@@ -89,11 +89,11 @@ const file = await unified()
 console.error(reporter(file))
 ```
 
-…now running `node example.js` yields:
+…then running `node example.js` yields:
 
 ```text
 example.txt
-  1:21-1:32  warning  Expected `ATM` instead of `ATM machine`  atm  retext-redundant-acronyms
+1:21-1:32 warning Unexpected redundant `ATM machine`, expected `ATM` atm retext-redundant-acronyms
 
 ⚠ 1 warning
 ```
@@ -101,45 +101,41 @@ example.txt
 ## API
 
 This package exports no identifiers.
-The default export is `retextRedundantAcronyms`.
+The default export is
+[`retextRedundantAcronyms`][api-retext-redundant-acronyms].
 
 ### `unified().use(retextRedundantAcronyms)`
 
-Check for redundant acronyms (such as `ATM machine`
-to `ATM`).
+Check for redundant acronyms (such as `ATM machine` to `ATM`).
+
+###### Parameters
+
+There are no parameters.
+
+###### Returns
+
+Transform ([`Transformer`][unified-transformer]).
 
 ## Messages
 
 Each message is emitted as a [`VFileMessage`][vfile-message] on `file`, with
-the following fields:
-
-###### `message.source`
-
-Name of this plugin (`'retext-redundant-acronyms'`).
-
-###### `message.ruleId`
-
-Lower case matched abbreviation (`string`, such as `'atm'`)
-
-###### `message.actual`
-
-Current not ok phrase (`string`, such as `'ATM machines'`).
-
-###### `message.expected`
-
-List of suggestions (`Array<string>`, such as `['ATMs']`).
+`source` set to `'retext-redundant-acronyms'`, `ruleId` to the lowercase
+acronym, `actual` to the unexpected phrase, and `expected` to suggestions.
 
 ## Types
 
 This package is fully typed with [TypeScript][].
-It does not export additional types.
+It exports no additional types.
 
 ## Compatibility
 
-Projects maintained by the unified collective are compatible with all maintained
+Projects maintained by the unified collective are compatible with maintained
 versions of Node.js.
-As of now, that is Node.js 12.20+, 14.14+, 16.0+, and 18.0+.
-Our projects sometimes work with older versions, but this is not guaranteed.
+
+When we cut a new major release, we drop support for unmaintained versions of
+Node.
+This means we try to keep the current release line,
+`retext-redundant-acronyms@^4`, compatible with Node.js 12.
 
 ## Related
 
@@ -176,9 +172,9 @@ abide by its terms.
 
 [downloads]: https://www.npmjs.com/package/retext-redundant-acronyms
 
-[size-badge]: https://img.shields.io/bundlephobia/minzip/retext-redundant-acronyms.svg
+[size-badge]: https://img.shields.io/bundlejs/size/retext-redundant-acronyms
 
-[size]: https://bundlephobia.com/result?p=retext-redundant-acronyms
+[size]: https://bundlejs.com/?q=retext-redundant-acronyms
 
 [sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
 
@@ -210,10 +206,14 @@ abide by its terms.
 
 [author]: https://wooorm.com
 
-[unified]: https://github.com/unifiedjs/unified
+[wiki-ras]: https://en.wikipedia.org/wiki/RAS_syndrome
 
 [retext]: https://github.com/retextjs/retext
 
+[unified]: https://github.com/unifiedjs/unified
+
+[unified-transformer]: https://github.com/unifiedjs/unified#transformer
+
 [vfile-message]: https://github.com/vfile/vfile-message
 
-[ras]: https://en.wikipedia.org/wiki/RAS_syndrome
+[api-retext-redundant-acronyms]: #unifieduseretextredundantacronyms
